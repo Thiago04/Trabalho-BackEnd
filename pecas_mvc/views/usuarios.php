@@ -102,31 +102,31 @@ $usuarioEditando = $usuarioEditando ?? null;
 </head>
 <body>
     <div class="container">
-        <h1>Gerenciar Usuários</h1>
+        <h1>Gerenciar Peças</h1>
 
         <!-- Formulário de Cadastro/Edição -->
         <div class="form-section">
-            <h2><?= $usuarioEditando ? 'Editar Usuário' : 'Cadastrar Novo Usuário' ?></h2>
+            <h2><?= $usuarioEditando ? 'Editar Peças' : 'Cadastrar Nova Peça' ?></h2>
             <form method="POST" action="index.php">
                 <div class="form-group">
                     <label for="nome">Nome:</label>
                     <input type="text" id="nome" name="nome" required value="<?= htmlspecialchars($usuarioEditando['nome'] ?? '') ?>">
                 </div>
                 <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required value="<?= htmlspecialchars($usuarioEditando['email'] ?? '') ?>">
+                    <label for="categoria">Categoria:</label>
+                    <input type="categoria" id="categoria" name="categoria" required value="<?= htmlspecialchars($usuarioEditando['email'] ?? '') ?>">
                 </div>
                 <div class="form-group">
-                    <label for="senha">Senha:</label>
-                    <input type="password" id="senha" name="senha" <?= $usuarioEditando ? '' : 'required' ?>>
-                    <?php if ($usuarioEditando): ?>
+                    <label for="quantidade">Quantidade:</label>
+                    <input type="quantidade" id="quantidade" name="quantidade" <?= $pecasEditando ? '' : 'required' ?>>
+                    <?php if ($pecasEditando): ?>
                         <small>Deixe em branco para manter a senha atual</small>
                     <?php endif; ?>
                 </div>
                 <?php if ($usuarioEditando): ?>
                     <input type="hidden" name="action" value="atualizar">
                     <input type="hidden" name="id" value="<?= htmlspecialchars($usuarioEditando['id']) ?>">
-                    <button type="submit">Atualizar Usuário</button>
+                    <button type="submit">Atualizar Peças</button>
                     <a href="index.php" style="margin-left: 10px;">
                         <button type="button">Cancelar</button>
                     </a>

@@ -7,8 +7,8 @@ class UsuarioController {
 
     public function home($pdo, $id = null) {
         $model = new UsuarioModel($pdo);
-        $usuarios = $model->buscarTodos();
-        $usuarioEditando = $id ? $model->buscarPorId($id) : null;
+        $pecas = $model->buscarTodos();
+        $pecasEditando = $id ? $model->buscarPorId($id) : null;
         require __DIR__ . "/../../views/usuarios.php";
     }
 
