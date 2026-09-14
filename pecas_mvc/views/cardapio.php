@@ -2,9 +2,9 @@
 // LOCAL: index.php
 
 require "conexao.php";                       // precisa deixar $pdo pronto
-require "app/Controllers/UsuarioController.php";
+require "app/Controllers/PecaController.php";
 
-$controller = new UsuarioController();
+$controller = new PecaController();
 $acao = $_GET['acao'] ?? 'home';
 $id = $_GET['id'] ?? null;
 

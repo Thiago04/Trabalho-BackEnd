@@ -1,6 +1,6 @@
 <?php
-// views/usuarios.php
-$usuarioEditando = $usuarioEditando ?? null;
+// views/pecas.php
+$pecaEditando = $pecaEditando ?? null;
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +8,7 @@ $usuarioEditando = $usuarioEditando ?? null;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerenciar Usuários</title>
+    <title>Gerenciar Peças</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -106,67 +106,66 @@ $usuarioEditando = $usuarioEditando ?? null;
 
         <!-- Formulário de Cadastro/Edição -->
         <div class="form-section">
-            <h2><?= $usuarioEditando ? 'Editar Peças' : 'Cadastrar Nova Peça' ?></h2>
+            <h2><?= $pecaEditando ? 'Editar Peça' : 'Cadastrar Nova Peça' ?></h2>
             <form method="POST" action="index.php">
                 <div class="form-group">
                     <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome" required value="<?= htmlspecialchars($usuarioEditando['nome'] ?? '') ?>">
+                    <input type="text" id="nome" name="nome" required value="<?= htmlspecialchars($pecaEditando['nome'] ?? '') ?>">
                 </div>
                 <div class="form-group">
                     <label for="categoria">Categoria:</label>
-                    <input type="categoria" id="categoria" name="categoria" required value="<?= htmlspecialchars($usuarioEditando['email'] ?? '') ?>">
+                    <input type="text" id="categoria" name="categoria" required value="<?= htmlspecialchars($pecaEditando['categoria'] ?? '') ?>">
                 </div>
                 <div class="form-group">
                     <label for="quantidade">Quantidade:</label>
-                    <input type="quantidade" id="quantidade" name="quantidade" <?= $pecasEditando ? '' : 'required' ?>>
-                    <?php if ($pecasEditando): ?>
-                        <small>Deixe em branco para manter a senha atual</small>
-                    <?php endif; ?>
+                    <input type="number" id="quantidade" name="quantidade" min="0" required value="<?= htmlspecialchars($pecaEditando['quantidade'] ?? '') ?>">
                 </div>
-                <?php if ($usuarioEditando): ?>
+                <?php if ($pecaEditando): ?>
                     <input type="hidden" name="action" value="atualizar">
-                    <input type="hidden" name="id" value="<?= htmlspecialchars($usuarioEditando['id']) ?>">
-                    <button type="submit">Atualizar Peças</button>
+                    <input type="hidden" name="id" value="<?= htmlspecialchars($pecaEditando['id']) ?>">
+                    <button type="submit">Atualizar Peça</button>
                     <a href="index.php" style="margin-left: 10px;">
                         <button type="button">Cancelar</button>
                     </a>
                 <?php else: ?>
                     <input type="hidden" name="action" value="cadastrar">
-                    <button type="submit">Cadastrar Usuário</button>
+                    <button type="submit">Cadastrar Peça</button>
                 <?php endif; ?>
             </form>
         </div>
 
-        <!-- Lista de Usuários -->
-        <h2>Lista de Usuários</h2>
-        <?php if (empty($usuarios)): ?>
-            <p>Nenhum usuário cadastrado ainda.</p>
+        <!-- Lista de Peças -->
+        <h2>Lista de Peças</h2>
+        <?php if (empty($pecas)): ?>
+            <p>Nenhuma peça cadastrada ainda.</p>
         <?php else: ?>
             <table>
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
-                        <th>Email</th>
+                        <th>Categoria</th>
+                        <th>Quantidade</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($usuarios as $usuario): ?>
+                    <?php foreach ($pecas as $peca): ?>
                         <tr>
-                            <td><?= htmlspecialchars($usuario['id']) ?></td>
-                            <td><?= htmlspecialchars($usuario['nome']) ?></td>
-                            <td><?= htmlspecialchars($usuario['email']) ?></td>
+                            <td><?= htmlspecialchars($peca['id']) ?></td>
+                            <td><?= htmlspecialchars($peca['nome']) ?></td>
+                            <td><?= htmlspecialchars($peca['categoria']) ?></td>
+                            <td><?= htmlspecialchars($peca['quantidade']) ?></td>
                             <td>
                                 <div class="actions">
                                     <form method="GET" action="index.php" style="display: inline;">
                                         <input type="hidden" name="action" value="editar">
-                                        <input type="hidden" name="id" value="<?= htmlspecialchars($usuario['id']) ?>">
+                                        <input type="hidden" name="id" value="<?= htmlspecialchars($peca['id']) ?>">
                                         <button type="submit" class="edit">Editar</button>
                                     </form>
-                                    <form method="POST" action="index.php" onsubmit="return confirm('Tem certeza que deseja deletar este usuário?');" style="display: inline;">
+                                    <form method="POST" action="index.php" onsubmit="return confirm('Tem certeza que deseja deletar esta peça?');" style="display: inline;">
                                         <input type="hidden" name="action" value="excluir">
-                                        <input type="hidden" name="id" value="<?= htmlspecialchars($usuario['id']) ?>">
+                                        <input type="hidden" name="id" value="<?= htmlspecialchars($peca['id']) ?>">
                                         <button type="submit" class="delete">Deletar</button>
                                     </form>
                                 </div>

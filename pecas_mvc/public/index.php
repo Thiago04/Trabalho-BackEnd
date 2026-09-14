@@ -2,9 +2,9 @@
 // LOCAL: public/index.php
 
 require_once "../config/conexao.php";
-require_once "../app/Controllers/UsuarioController.php";
+require_once "../app/Controllers/PecaController.php";
 
-$controller = new UsuarioController();
+$controller = new PecaController();
 
 // Lê a ação tanto do POST (formulários) quanto do GET (links "Editar")
 // Corrigido: a view manda o campo como "action", não "acao"

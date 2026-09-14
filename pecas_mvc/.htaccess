@@ -1,9 +1,10 @@
 RewriteEngine On
-RewriteBase /restaurante_mvc/
+RewriteBase /pecas_mvc/
 
 # Se o arquivo pedido existir fisicamente dentro de public/ (ex: imagem, CSS), serve direto
-RewriteCond %{DOCUMENT_ROOT}/restaurante_mvc/public%{REQUEST_URI} -f
+RewriteCond %{REQUEST_URI} ^/pecas_mvc/(.*)$
+RewriteCond %{DOCUMENT_ROOT}/pecas_mvc/public/%1 -f
 RewriteRule ^(.*)$ public/$1 [L]
 
-# Caso contrário (incluindo diretórios), manda tudo para o index.php dentro de public/
+# Caso contrário (rota, ação, arquivo inexistente), manda tudo para o front controller
 RewriteRule ^(.*)$ public/index.php [L,QSA]
